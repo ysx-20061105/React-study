@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调形式ref</title>
+</head>
+<body>
+    <div id="test"></div>
+    <div id="test1"></div>
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script type="text/javascript" src="../../js/react-dom.development.js"></script>
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <script type="text/babel">
+        class Demo extends React.Component{
+
+            showData=()=>{
+                const {input1}=this
+                alert(input1.value)
+            }
+
+            showData2=()=>{
+                const {input2}=this
+                alert(input2.value)
+            }
+
+            render(){
+                return (
+                    <div>
+                        <input ref={c=>this.input1=c} type="text" placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData}>点击我显示左侧数据</button>
+                        <input ref={c=>this.input2=c} onBlur={this.showData2} type="text" placeholder="失去焦点提示数据"/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('test'))
+    </script>
+</body>
+</html>
